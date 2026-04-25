@@ -23,183 +23,126 @@
     --line: #e6dfd2;
     --line-strong: #cdc3b0;
     --good: #4a6b3a;
+    --warn: #b88830;
+    --bad: #a8412b;
     --shadow: 0 1px 2px rgba(26,24,20,.04), 0 8px 24px rgba(26,24,20,.06);
     --radius: 14px;
     --radius-sm: 8px;
   }
-
   * { box-sizing: border-box; margin: 0; padding: 0; }
   html, body { background: var(--bg); }
   body {
     font-family: 'Inter Tight', -apple-system, sans-serif;
-    color: var(--ink);
-    font-size: 15px;
-    line-height: 1.5;
+    color: var(--ink); font-size: 15px; line-height: 1.5;
     -webkit-font-smoothing: antialiased;
-    min-height: 100vh;
-    min-height: 100dvh;
+    min-height: 100vh; min-height: 100dvh;
     padding-bottom: env(safe-area-inset-bottom);
   }
-
   .display { font-family: 'Fraunces', serif; font-feature-settings: "ss01"; letter-spacing: -0.02em; }
   .mono { font-family: 'JetBrains Mono', monospace; }
 
   .topbar {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 18px 24px;
-    border-bottom: 1px solid var(--line);
-    position: sticky;
-    top: 0;
-    z-index: 50;
-    backdrop-filter: blur(12px);
-    background: rgba(245,241,234,.85);
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 14px 24px; border-bottom: 1px solid var(--line);
+    position: sticky; top: 0; z-index: 50;
+    backdrop-filter: blur(12px); background: rgba(245,241,234,.85);
+    gap: 12px; flex-wrap: wrap;
   }
   .brand {
-    font-family: 'Fraunces', serif;
-    font-weight: 600;
-    font-size: 22px;
-    letter-spacing: -0.02em;
-    display: flex;
-    align-items: center;
-    gap: 10px;
+    font-family: 'Fraunces', serif; font-weight: 600; font-size: 22px;
+    letter-spacing: -0.02em; display: flex; align-items: center; gap: 10px;
   }
   .brand .dot { width: 8px; height: 8px; background: var(--accent); border-radius: 50%; }
-  .user-chip {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    font-size: 13px;
-    color: var(--ink-soft);
+  .totals-badge {
+    display: flex; gap: 14px; padding: 6px 12px;
+    background: var(--bg-card); border: 1px solid var(--line);
+    border-radius: var(--radius-sm); font-size: 12px;
   }
-
-  button {
-    font-family: inherit;
-    font-size: 14px;
-    cursor: pointer;
-    border: none;
-    background: none;
-    color: inherit;
+  .totals-badge .item .label {
+    color: var(--ink-faint); text-transform: uppercase; letter-spacing: 0.06em;
+    font-size: 10px; font-weight: 500;
   }
+  .totals-badge .item .value {
+    font-family: 'JetBrains Mono', monospace; color: var(--ink);
+    font-weight: 500; font-size: 13px;
+  }
+  @media (max-width: 600px) { .totals-badge { order: 3; flex-basis: 100%; justify-content: center; } }
+  .user-chip { display: flex; align-items: center; gap: 8px; font-size: 13px; color: var(--ink-soft); }
 
+  button { font-family: inherit; font-size: 14px; cursor: pointer; border: none; background: none; color: inherit; }
   .btn {
-    background: var(--ink);
-    color: var(--bg);
-    padding: 11px 20px;
-    border-radius: var(--radius-sm);
-    font-weight: 500;
+    background: var(--ink); color: var(--bg);
+    padding: 11px 20px; border-radius: var(--radius-sm); font-weight: 500;
     transition: transform .15s ease, opacity .15s;
   }
   .btn:hover { opacity: .85; }
   .btn:active { transform: scale(.98); }
   .btn:disabled { opacity: .5; cursor: not-allowed; }
   .btn-ghost {
-    background: transparent;
-    color: var(--ink);
-    border: 1px solid var(--line-strong);
-    padding: 10px 18px;
-    border-radius: var(--radius-sm);
-    font-weight: 500;
+    background: transparent; color: var(--ink); border: 1px solid var(--line-strong);
+    padding: 10px 18px; border-radius: var(--radius-sm); font-weight: 500;
   }
   .btn-ghost:hover { background: var(--bg-card); }
   .btn-accent { background: var(--accent); color: white; }
+  .btn-danger { background: var(--bad); color: white; }
 
   .tabs {
-    display: flex;
-    gap: 4px;
-    padding: 0 24px;
-    margin-top: 8px;
-    border-bottom: 1px solid var(--line);
-    overflow-x: auto;
+    display: flex; gap: 4px; padding: 0 24px; margin-top: 8px;
+    border-bottom: 1px solid var(--line); overflow-x: auto;
   }
   .tab {
-    padding: 14px 18px;
-    font-size: 14px;
-    color: var(--ink-soft);
-    border-bottom: 2px solid transparent;
-    transition: color .2s, border-color .2s;
-    white-space: nowrap;
-    font-weight: 500;
+    padding: 14px 18px; font-size: 14px; color: var(--ink-soft);
+    border-bottom: 2px solid transparent; transition: color .2s, border-color .2s;
+    white-space: nowrap; font-weight: 500;
   }
   .tab.active { color: var(--ink); border-bottom-color: var(--accent); }
 
   .container { max-width: 1100px; margin: 0 auto; padding: 32px 24px 64px; }
   .panel {
-    background: var(--bg-card);
-    border: 1px solid var(--line);
-    border-radius: var(--radius);
-    padding: 28px;
-    box-shadow: var(--shadow);
+    background: var(--bg-card); border: 1px solid var(--line);
+    border-radius: var(--radius); padding: 28px; box-shadow: var(--shadow);
   }
   .panel + .panel { margin-top: 20px; }
 
   h2.panel-title {
-    font-family: 'Fraunces', serif;
-    font-weight: 500;
-    font-size: 28px;
-    letter-spacing: -0.02em;
-    margin-bottom: 4px;
+    font-family: 'Fraunces', serif; font-weight: 500; font-size: 28px;
+    letter-spacing: -0.02em; margin-bottom: 4px;
   }
   .panel-subtitle { color: var(--ink-soft); font-size: 14px; margin-bottom: 24px; }
 
-  .form-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 18px;
-  }
+  .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
   .form-grid .full { grid-column: 1 / -1; }
   @media (max-width: 600px) { .form-grid { grid-template-columns: 1fr; } }
 
   label.field { display: block; }
   label.field > span {
-    display: block;
-    font-size: 12px;
-    text-transform: uppercase;
-    letter-spacing: 0.08em;
-    color: var(--ink-faint);
-    margin-bottom: 6px;
-    font-weight: 500;
+    display: block; font-size: 12px; text-transform: uppercase;
+    letter-spacing: 0.08em; color: var(--ink-faint);
+    margin-bottom: 6px; font-weight: 500;
   }
   input, select, textarea {
-    width: 100%;
-    font-family: inherit;
-    font-size: 15px;
-    padding: 12px 14px;
-    border: 1px solid var(--line-strong);
-    border-radius: var(--radius-sm);
-    background: var(--bg);
-    color: var(--ink);
+    width: 100%; font-family: inherit; font-size: 15px;
+    padding: 12px 14px; border: 1px solid var(--line-strong);
+    border-radius: var(--radius-sm); background: var(--bg); color: var(--ink);
     transition: border-color .15s, background .15s;
   }
   input:focus, select:focus, textarea:focus {
-    outline: none;
-    border-color: var(--accent);
-    background: var(--bg-card);
+    outline: none; border-color: var(--accent); background: var(--bg-card);
   }
   textarea { resize: vertical; min-height: 70px; }
 
   .currency-toggle {
-    display: inline-flex;
-    border: 1px solid var(--line-strong);
-    border-radius: var(--radius-sm);
-    overflow: hidden;
-    background: var(--bg);
+    display: inline-flex; border: 1px solid var(--line-strong);
+    border-radius: var(--radius-sm); overflow: hidden; background: var(--bg);
   }
   .currency-toggle button {
-    padding: 11px 22px;
-    font-weight: 500;
-    color: var(--ink-soft);
-    transition: all .15s;
+    padding: 11px 22px; font-weight: 500; color: var(--ink-soft); transition: all .15s;
   }
   .currency-toggle button.active { background: var(--ink); color: var(--bg); }
 
   .status {
-    margin-top: 18px;
-    padding: 12px 14px;
-    border-radius: var(--radius-sm);
-    font-size: 14px;
-    display: none;
+    margin-top: 18px; padding: 12px 14px;
+    border-radius: var(--radius-sm); font-size: 14px; display: none;
   }
   .status.show { display: block; }
   .status.ok { background: #e9f0e3; color: var(--good); border: 1px solid #c5d6b8; }
@@ -207,192 +150,178 @@
   .status.info { background: var(--accent-soft); color: var(--accent); border: 1px solid #e8c8a8; }
 
   .filter-row {
-    display: grid;
-    grid-template-columns: 1fr 1fr 2fr 1fr auto;
-    gap: 14px;
-    align-items: end;
+    display: grid; grid-template-columns: 1fr 1fr 2fr 1fr auto; gap: 14px; align-items: end;
   }
   @media (max-width: 800px) { .filter-row { grid-template-columns: 1fr 1fr; } .filter-row .full-mobile { grid-column: 1 / -1; } }
 
   .stat-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-    gap: 16px;
-    margin: 24px 0;
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 16px; margin: 24px 0;
   }
-  .stat {
-    padding: 18px;
-    background: var(--bg);
-    border: 1px solid var(--line);
-    border-radius: var(--radius-sm);
-  }
+  .stat { padding: 18px; background: var(--bg); border: 1px solid var(--line); border-radius: var(--radius-sm); }
   .stat .label {
-    font-size: 11px;
-    text-transform: uppercase;
-    letter-spacing: 0.08em;
-    color: var(--ink-faint);
-    font-weight: 500;
+    font-size: 11px; text-transform: uppercase; letter-spacing: 0.08em;
+    color: var(--ink-faint); font-weight: 500;
   }
   .stat .value {
-    font-family: 'Fraunces', serif;
-    font-weight: 500;
-    font-size: 28px;
-    margin-top: 4px;
-    letter-spacing: -0.02em;
+    font-family: 'Fraunces', serif; font-weight: 500; font-size: 28px;
+    margin-top: 4px; letter-spacing: -0.02em;
   }
   .stat .sub { font-size: 12px; color: var(--ink-soft); margin-top: 4px; }
 
-  .chart-wrap {
-    margin-top: 20px;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 24px;
-  }
+  .chart-wrap { margin-top: 20px; display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
   @media (max-width: 800px) { .chart-wrap { grid-template-columns: 1fr; } }
   .chart-box { position: relative; height: 320px; }
 
   .see-data { margin-top: 24px; text-align: center; }
   .see-data button {
-    color: var(--accent);
-    font-weight: 500;
-    text-decoration: underline;
-    text-underline-offset: 4px;
+    color: var(--accent); font-weight: 500; text-decoration: underline; text-underline-offset: 4px;
   }
 
-  .table-wrap {
-    margin-top: 16px;
-    overflow-x: auto;
-    border: 1px solid var(--line);
-    border-radius: var(--radius-sm);
-  }
+  .table-wrap { margin-top: 16px; overflow-x: auto; border: 1px solid var(--line); border-radius: var(--radius-sm); }
   table { width: 100%; border-collapse: collapse; font-size: 14px; }
   th, td { padding: 12px 14px; text-align: left; border-bottom: 1px solid var(--line); }
   th {
-    background: var(--bg);
-    font-size: 11px;
-    text-transform: uppercase;
-    letter-spacing: 0.08em;
-    color: var(--ink-faint);
-    font-weight: 600;
-    cursor: pointer;
-    user-select: none;
+    background: var(--bg); font-size: 11px; text-transform: uppercase;
+    letter-spacing: 0.08em; color: var(--ink-faint); font-weight: 600;
+    cursor: pointer; user-select: none;
   }
   th:hover { color: var(--ink); }
-  tbody tr:hover { background: rgba(200,85,26,0.03); }
+  tbody tr { cursor: context-menu; }
+  tbody tr:hover { background: rgba(200,85,26,0.05); }
   tbody tr:last-child td { border-bottom: none; }
   td.num { font-family: 'JetBrains Mono', monospace; text-align: right; font-size: 13px; }
   td.cat { font-weight: 500; }
 
   .checkbox-group {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 8px;
-    padding: 10px;
-    border: 1px solid var(--line-strong);
-    border-radius: var(--radius-sm);
-    background: var(--bg);
+    display: flex; flex-wrap: wrap; gap: 8px; padding: 10px;
+    border: 1px solid var(--line-strong); border-radius: var(--radius-sm); background: var(--bg);
   }
   .checkbox-group label {
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
-    padding: 5px 10px;
-    background: var(--bg-card);
-    border: 1px solid var(--line);
-    border-radius: 999px;
-    cursor: pointer;
-    font-size: 13px;
-    transition: all .15s;
+    display: inline-flex; align-items: center; gap: 6px; padding: 5px 10px;
+    background: var(--bg-card); border: 1px solid var(--line);
+    border-radius: 999px; cursor: pointer; font-size: 13px; transition: all .15s;
   }
-  .checkbox-group label:has(input:checked) {
-    background: var(--ink);
-    color: var(--bg);
-    border-color: var(--ink);
-  }
+  .checkbox-group label:has(input:checked) { background: var(--ink); color: var(--bg); border-color: var(--ink); }
   .checkbox-group input { width: auto; margin: 0; display: none; }
 
-  .lock-screen {
-    min-height: 100vh;
-    min-height: 100dvh;
-    display: grid;
-    place-items: center;
-    padding: 24px;
-  }
+  .lock-screen { min-height: 100vh; min-height: 100dvh; display: grid; place-items: center; padding: 24px; }
   .lock-card {
-    max-width: 380px;
-    width: 100%;
-    background: var(--bg-card);
-    border: 1px solid var(--line);
-    border-radius: var(--radius);
-    padding: 40px 32px;
-    box-shadow: var(--shadow);
-    text-align: center;
+    max-width: 380px; width: 100%; background: var(--bg-card);
+    border: 1px solid var(--line); border-radius: var(--radius);
+    padding: 40px 32px; box-shadow: var(--shadow); text-align: center;
   }
   .lock-card h1 {
-    font-family: 'Fraunces', serif;
-    font-weight: 500;
-    font-size: 42px;
-    letter-spacing: -0.03em;
-    margin-bottom: 8px;
+    font-family: 'Fraunces', serif; font-weight: 500; font-size: 42px;
+    letter-spacing: -0.03em; margin-bottom: 8px;
   }
   .lock-card p { color: var(--ink-soft); margin-bottom: 28px; font-size: 15px; }
   .pin-input {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 24px;
-    text-align: center;
-    letter-spacing: 0.6em;
-    padding: 14px;
-    margin-bottom: 16px;
+    font-family: 'JetBrains Mono', monospace; font-size: 24px; text-align: center;
+    letter-spacing: 0.6em; padding: 14px; margin-bottom: 16px;
   }
   .lock-card .btn { width: 100%; padding: 14px; font-size: 15px; }
 
-  .rate-prompt {
-    margin: 16px 0;
-    padding: 14px;
-    background: var(--accent-soft);
-    border: 1px solid #e8c8a8;
-    border-radius: var(--radius-sm);
-    display: none;
-  }
-  .rate-prompt.show { display: block; }
-  .rate-prompt label { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
-  .rate-prompt label > span:first-child { font-size: 14px; color: var(--ink); }
-  .rate-prompt input { width: 120px; }
-
   .spinner {
-    display: inline-block;
-    width: 14px; height: 14px;
-    border: 2px solid var(--line-strong);
-    border-top-color: var(--ink);
-    border-radius: 50%;
-    animation: spin 0.7s linear infinite;
-    vertical-align: middle;
+    display: inline-block; width: 14px; height: 14px;
+    border: 2px solid var(--line-strong); border-top-color: var(--ink);
+    border-radius: 50%; animation: spin 0.7s linear infinite; vertical-align: middle;
   }
   @keyframes spin { to { transform: rotate(360deg); } }
 
   .hidden { display: none !important; }
 
   .settings-row {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 14px 0;
-    border-bottom: 1px solid var(--line);
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 14px 0; border-bottom: 1px solid var(--line); gap: 12px;
   }
   .settings-row:last-child { border-bottom: none; }
   .settings-row .label { font-size: 14px; }
-  .settings-row .value { color: var(--ink-soft); font-size: 13px; font-family: 'JetBrains Mono', monospace; word-break: break-all; max-width: 60%; text-align: right; }
-
-  .empty {
-    text-align: center;
-    padding: 48px 24px;
-    color: var(--ink-soft);
+  .settings-row .value {
+    color: var(--ink-soft); font-size: 13px; font-family: 'JetBrains Mono', monospace;
+    word-break: break-all; max-width: 60%; text-align: right;
   }
+
+  .empty { text-align: center; padding: 48px 24px; color: var(--ink-soft); }
+
+  .budget-list { display: flex; flex-direction: column; gap: 14px; }
+  .budget-row { padding: 14px 16px; background: var(--bg); border: 1px solid var(--line); border-radius: var(--radius-sm); }
+  .budget-row-head {
+    display: flex; justify-content: space-between; align-items: baseline;
+    margin-bottom: 8px; font-size: 14px;
+  }
+  .budget-row-head .cat { font-weight: 500; }
+  .budget-row-head .amt { font-family: 'JetBrains Mono', monospace; font-size: 13px; color: var(--ink-soft); }
+  .budget-row-head .amt strong { color: var(--ink); font-weight: 500; }
+  .budget-bar {
+    height: 8px; background: var(--line); border-radius: 4px; overflow: hidden; position: relative;
+  }
+  .budget-bar .fill {
+    height: 100%; background: var(--good); transition: width .3s ease; border-radius: 4px;
+  }
+  .budget-bar.warn .fill { background: var(--warn); }
+  .budget-bar.bad .fill { background: var(--bad); }
+  .budget-pct { font-size: 11px; color: var(--ink-faint); margin-top: 6px; font-family: 'JetBrains Mono', monospace; }
+
+  .budget-editor-row {
+    display: grid; grid-template-columns: 2fr 1fr; gap: 12px;
+    align-items: center; padding: 8px 0;
+  }
+  .budget-editor-row > span { font-size: 14px; }
+  .budget-editor-row input { padding: 8px 12px; font-size: 14px; }
+
+  .month-banner {
+    margin-bottom: 20px; padding: 12px 16px;
+    background: var(--accent-soft); border: 1px solid #e8c8a8;
+    border-radius: var(--radius-sm); font-size: 13px; color: var(--ink);
+    display: flex; gap: 10px; align-items: center;
+  }
+  .month-banner .icon { color: var(--accent); font-weight: 600; }
+  .month-banner.info-quiet { background: var(--bg); border-color: var(--line); color: var(--ink-soft); }
+
+  .fx-info {
+    margin-top: 12px; padding: 10px 14px; background: var(--bg);
+    border: 1px solid var(--line); border-radius: var(--radius-sm);
+    font-size: 12px; color: var(--ink-soft); font-family: 'JetBrains Mono', monospace;
+  }
+  .fx-info .stale { color: var(--warn); }
+
+  .modal-overlay {
+    position: fixed; inset: 0; background: rgba(26,24,20,0.5);
+    z-index: 100; display: none; align-items: center; justify-content: center;
+    padding: 20px; backdrop-filter: blur(4px);
+  }
+  .modal-overlay.show { display: flex; }
+  .modal {
+    background: var(--bg-card); border-radius: var(--radius);
+    box-shadow: 0 20px 60px rgba(0,0,0,0.2);
+    width: 100%; max-width: 480px; max-height: 90vh; overflow-y: auto;
+  }
+  .modal-head { padding: 20px 24px 12px; border-bottom: 1px solid var(--line); }
+  .modal-head h3 {
+    font-family: 'Fraunces', serif; font-weight: 500; font-size: 22px; letter-spacing: -0.02em;
+  }
+  .modal-head .sub { color: var(--ink-soft); font-size: 13px; margin-top: 4px; }
+  .modal-body { padding: 20px 24px; }
+  .modal-foot { padding: 16px 24px 20px; display: flex; gap: 10px; justify-content: flex-end; flex-wrap: wrap; }
+
+  .ctx-menu {
+    position: absolute; background: var(--bg-card); border: 1px solid var(--line);
+    border-radius: var(--radius-sm); box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+    padding: 6px; z-index: 90; display: none; min-width: 140px;
+  }
+  .ctx-menu.show { display: block; }
+  .ctx-menu button {
+    display: flex; align-items: center; gap: 8px; width: 100%;
+    text-align: left; padding: 8px 12px; border-radius: 6px; font-size: 14px;
+  }
+  .ctx-menu button:hover { background: var(--bg); }
+  .ctx-menu button.danger { color: var(--bad); }
+  .ctx-menu .sep { height: 1px; background: var(--line); margin: 4px 0; }
 </style>
 </head>
 <body>
 
-<!-- ==================== LOCK SCREEN ==================== -->
 <div id="lockScreen" class="lock-screen">
   <div class="lock-card">
     <h1 class="display">Ledger</h1>
@@ -406,10 +335,13 @@
   </div>
 </div>
 
-<!-- ==================== APP ==================== -->
 <div id="app" class="hidden">
   <div class="topbar">
     <div class="brand"><span class="dot"></span><span class="display">Ledger</span></div>
+    <div class="totals-badge" id="totalsBadge">
+      <div class="item"><div class="label">MTD</div><div class="value" id="mtdValue">—</div></div>
+      <div class="item"><div class="label">YTD</div><div class="value" id="ytdValue">—</div></div>
+    </div>
     <div class="user-chip">
       <button class="btn-ghost" onclick="showTab('settings')" style="padding: 6px 10px; font-size: 13px;">Settings</button>
       <button onclick="lockApp()" style="color: var(--ink-soft); font-size: 13px;">Lock</button>
@@ -424,38 +356,22 @@
 
   <div class="container">
 
-    <!-- ============ ADD EXPENSE ============ -->
+    <!-- ADD EXPENSE -->
     <div id="tab-add" class="tab-content">
+      <div class="panel" id="budgetsPanel">
+        <h2 class="panel-title">This month's budget</h2>
+        <p class="panel-subtitle" id="budgetsSubtitle">Loading…</p>
+        <div class="budget-list" id="budgetsList"></div>
+      </div>
+
       <div class="panel">
         <h2 class="panel-title">New entry</h2>
         <p class="panel-subtitle">Logged the moment you tap save.</p>
 
         <div class="form-grid">
-          <label class="field">
-            <span>Date</span>
-            <input type="date" id="expDate" />
-          </label>
-
-          <label class="field">
-            <span>Category</span>
-            <select id="expCategory">
-              <option>Groceries</option>
-              <option>Rent</option>
-              <option>Utilities &amp; Bills</option>
-              <option>EMI</option>
-              <option>Subscriptions</option>
-              <option>Food</option>
-              <option>Retail</option>
-              <option>Travel &amp; Leisure</option>
-              <option>Misc</option>
-            </select>
-          </label>
-
-          <label class="field">
-            <span>Amount</span>
-            <input type="number" id="expAmount" step="0.01" inputmode="decimal" placeholder="0.00" />
-          </label>
-
+          <label class="field"><span>Date</span><input type="date" id="expDate" /></label>
+          <label class="field"><span>Category</span><select id="expCategory"></select></label>
+          <label class="field"><span>Amount</span><input type="number" id="expAmount" step="0.01" inputmode="decimal" placeholder="0.00" /></label>
           <label class="field">
             <span>Currency</span>
             <div class="currency-toggle" id="currToggle">
@@ -463,37 +379,26 @@
               <button type="button" data-curr="INR">INR</button>
             </div>
           </label>
-
-          <label class="field full">
-            <span>Notes (optional)</span>
-            <textarea id="expNotes" placeholder="What was this for?"></textarea>
-          </label>
+          <label class="field full"><span>Notes (optional)</span><textarea id="expNotes" placeholder="What was this for?"></textarea></label>
         </div>
 
         <div style="margin-top: 24px; display: flex; gap: 12px;">
           <button class="btn btn-accent" onclick="saveExpense()" id="saveBtn">Save expense</button>
           <button class="btn-ghost" onclick="resetForm()">Reset</button>
         </div>
-
         <div class="status" id="saveStatus"></div>
       </div>
     </div>
 
-    <!-- ============ DASHBOARD ============ -->
+    <!-- DASHBOARD -->
     <div id="tab-dash" class="tab-content hidden">
       <div class="panel">
         <h2 class="panel-title">Dashboard</h2>
         <p class="panel-subtitle">Filter, visualize, drill in.</p>
 
         <div class="filter-row">
-          <label class="field">
-            <span>Start date</span>
-            <input type="date" id="dashStart" />
-          </label>
-          <label class="field">
-            <span>End date</span>
-            <input type="date" id="dashEnd" />
-          </label>
+          <label class="field"><span>Start date</span><input type="date" id="dashStart" /></label>
+          <label class="field"><span>End date</span><input type="date" id="dashEnd" /></label>
           <label class="field full-mobile">
             <span>Categories</span>
             <div class="checkbox-group" id="catGroup"></div>
@@ -509,13 +414,7 @@
           <button class="btn" onclick="refreshDashboard()" id="refreshBtn">Apply</button>
         </div>
 
-        <div class="rate-prompt" id="ratePrompt">
-          <label>
-            <span>Conversion rate:</span>
-            <span id="rateLabel" class="mono"></span>
-            <input type="number" id="rateInput" step="0.0001" placeholder="83.20" />
-          </label>
-        </div>
+        <div class="fx-info" id="fxInfo">Loading exchange rate…</div>
 
         <div id="dashContent">
           <div class="stat-grid" id="statGrid"></div>
@@ -523,36 +422,33 @@
             <div class="chart-box"><canvas id="byCatChart"></canvas></div>
             <div class="chart-box"><canvas id="byTimeChart"></canvas></div>
           </div>
-
-          <div class="see-data">
-            <button onclick="toggleDataTable()" id="seeDataBtn">See data ↓</button>
-          </div>
+          <div class="see-data"><button onclick="toggleDataTable()" id="seeDataBtn">See data ↓</button></div>
           <div id="dataTableWrap" class="hidden">
             <div class="table-wrap">
               <table id="dataTable">
-                <thead>
-                  <tr>
-                    <th data-sort="Date">Date</th>
-                    <th data-sort="Category">Category</th>
-                    <th data-sort="Notes">Notes</th>
-                    <th data-sort="Currency">Curr</th>
-                    <th data-sort="Amount" class="num">Amount</th>
-                  </tr>
-                </thead>
+                <thead><tr>
+                  <th data-sort="Date">Date</th>
+                  <th data-sort="Category">Category</th>
+                  <th data-sort="Notes">Notes</th>
+                  <th data-sort="Currency">Curr</th>
+                  <th data-sort="Amount" class="num">Amount</th>
+                </tr></thead>
                 <tbody></tbody>
               </table>
             </div>
+            <p style="font-size: 12px; color: var(--ink-faint); margin-top: 12px; text-align: center;">
+              Right-click a row (desktop) or long-press (mobile) for edit/delete.
+            </p>
           </div>
         </div>
       </div>
     </div>
 
-    <!-- ============ SETTINGS ============ -->
+    <!-- SETTINGS -->
     <div id="tab-settings" class="tab-content hidden">
       <div class="panel">
         <h2 class="panel-title">Settings</h2>
         <p class="panel-subtitle">One-time setup. Stored on this device.</p>
-
         <div class="form-grid">
           <label class="field full">
             <span>Apps Script Web App URL</span>
@@ -563,49 +459,107 @@
             <input type="password" id="cfgPin" inputmode="numeric" pattern="[0-9]*" maxlength="4" placeholder="••••" />
           </label>
         </div>
-
         <div style="margin-top: 24px; display: flex; gap: 12px; flex-wrap: wrap;">
           <button class="btn btn-accent" onclick="saveConfig()">Save settings</button>
           <button class="btn-ghost" onclick="testConnection()">Test connection</button>
         </div>
         <div class="status" id="cfgStatus"></div>
+      </div>
 
-        <div style="margin-top: 32px;">
-          <h3 style="font-family: 'Fraunces', serif; font-weight: 500; font-size: 18px; margin-bottom: 12px;">About this device</h3>
-          <div class="settings-row"><span class="label">Backend URL</span><span class="value" id="infoUrl">—</span></div>
-          <div class="settings-row"><span class="label">Version</span><span class="value">2.0</span></div>
-          <div class="settings-row"><span class="label">Data location</span><span class="value">Owner's Google Drive</span></div>
+      <div class="panel">
+        <h2 class="panel-title">Monthly budgets</h2>
+        <p class="panel-subtitle" id="budgetEditorSubtitle">Set how much you plan to spend per category. Saved to your Sheet, syncs across devices.</p>
+
+        <div id="budgetMonthBanner"></div>
+
+        <label class="field" style="max-width: 280px; margin-bottom: 20px;">
+          <span>Budget currency</span>
+          <select id="budgetCurrency">
+            <option value="USD">USD</option>
+            <option value="INR">INR</option>
+          </select>
+        </label>
+
+        <div id="budgetEditor"></div>
+
+        <div style="margin-top: 24px; display: flex; gap: 12px; flex-wrap: wrap;">
+          <button class="btn btn-accent" onclick="saveBudgetsForCurrentMonth()" id="saveBudgetsBtn">Save budgets for this month</button>
         </div>
+        <div class="status" id="budgetStatus"></div>
+      </div>
+
+      <div class="panel">
+        <h3 style="font-family: 'Fraunces', serif; font-weight: 500; font-size: 18px; margin-bottom: 16px;">About this device</h3>
+        <div class="settings-row"><span class="label">Backend URL</span><span class="value" id="infoUrl">—</span></div>
+        <div class="settings-row"><span class="label">Version</span><span class="value">2.1</span></div>
+        <div class="settings-row"><span class="label">FX rate source</span><span class="value" id="infoFx">—</span></div>
       </div>
     </div>
-
   </div>
 </div>
 
+<div class="modal-overlay" id="modal">
+  <div class="modal">
+    <div class="modal-head">
+      <h3 id="modalTitle">Edit expense</h3>
+      <div class="sub" id="modalSub"></div>
+    </div>
+    <div class="modal-body" id="modalBody"></div>
+    <div class="modal-foot">
+      <button class="btn-ghost" onclick="closeModal()">Cancel</button>
+      <button class="btn" id="modalAction">Save</button>
+    </div>
+  </div>
+</div>
+
+<div class="ctx-menu" id="ctxMenu">
+  <button onclick="ctxEdit()">✎ Edit</button>
+  <div class="sep"></div>
+  <button class="danger" onclick="ctxDelete()">⌫ Delete</button>
+</div>
+
 <script>
-// ============================================================
+// =====================================================================
 // State
-// ============================================================
+// =====================================================================
 const CATEGORIES = ["Groceries", "Rent", "Utilities & Bills", "EMI", "Subscriptions", "Food", "Retail", "Travel & Leisure", "Misc"];
+const PALETTE = ["#c8551a", "#1a1814", "#4a6b3a", "#8a7548", "#5a7a8c", "#a85050", "#7a5a8c", "#9b8454", "#3a5a4a"];
+
 let cachedRows = [];
+let currentBudget = null;   // { month, currency, lastUpdated, amounts, carriedFrom, empty }
 let charts = { byCat: null, byTime: null };
 let sortState = { col: "Date", dir: "desc" };
 let selectedCurrency = "USD";
 let unlocked = false;
+let fxRate = null;
+let fxSource = null;
+let fxFetchedAt = null;
+let pendingRowId = null;
 
-// ============================================================
+function currentMonthStr() {
+  const d = new Date();
+  return d.getFullYear() + "-" + String(d.getMonth() + 1).padStart(2, "0");
+}
+
+// =====================================================================
 // Init
-// ============================================================
+// =====================================================================
 window.addEventListener("DOMContentLoaded", () => {
   const today = new Date().toISOString().split("T")[0];
   document.getElementById("expDate").value = today;
-
   const now = new Date();
-  const firstOfMonth = new Date(now.getFullYear(), now.getMonth(), 1).toISOString().split("T")[0];
-  document.getElementById("dashStart").value = firstOfMonth;
+  document.getElementById("dashStart").value = new Date(now.getFullYear(), now.getMonth(), 1).toISOString().split("T")[0];
   document.getElementById("dashEnd").value = today;
 
+  const sel = document.getElementById("expCategory");
+  CATEGORIES.forEach(c => {
+    const opt = document.createElement("option");
+    opt.textContent = c;
+    sel.appendChild(opt);
+  });
+
   buildCategoryCheckboxes();
+  buildBudgetEditor();
 
   document.querySelectorAll("#currToggle button").forEach(b => {
     b.addEventListener("click", () => {
@@ -624,32 +578,26 @@ window.addEventListener("DOMContentLoaded", () => {
     });
   });
 
-  // Enter key on PIN field
   document.getElementById("pinInput").addEventListener("keydown", e => {
     if (e.key === "Enter") submitPin();
   });
 
-  // Check if config exists — if not, auto-jump to settings
-  const cfg = getConfig();
-  if (!cfg.backendUrl) {
-    document.getElementById("lockStatus").className = "status show info";
-    document.getElementById("lockStatus").innerHTML = 'Not set up yet. Click "First-time setup?" below.';
+  document.addEventListener("click", e => { if (!e.target.closest("#ctxMenu")) hideCtxMenu(); });
+  document.addEventListener("scroll", hideCtxMenu, true);
+  document.getElementById("modal").addEventListener("click", e => { if (e.target.id === "modal") closeModal(); });
+
+  if (!getConfig().backendUrl) {
+    showStatus("lockStatus", "info", 'Not set up yet. Click "First-time setup?" below.');
   }
 });
 
-// ============================================================
-// PIN / Lock screen
-// ============================================================
+// =====================================================================
+// Lock / Unlock
+// =====================================================================
 function submitPin() {
   const cfg = getConfig();
-  if (!cfg.backendUrl) {
-    showStatus("lockStatus", "err", "Backend URL not configured. Click \"First-time setup?\" below.");
-    return;
-  }
-  if (!cfg.pin) {
-    showStatus("lockStatus", "err", "No PIN saved on this device. Click \"First-time setup?\" below to set it.");
-    return;
-  }
+  if (!cfg.backendUrl) { showStatus("lockStatus", "err", 'Backend URL not configured. Click "First-time setup?" below.'); return; }
+  if (!cfg.pin) { showStatus("lockStatus", "err", 'No PIN saved. Click "First-time setup?" below.'); return; }
   const typed = document.getElementById("pinInput").value;
   if (typed !== cfg.pin) {
     showStatus("lockStatus", "err", "Wrong PIN.");
@@ -660,6 +608,8 @@ function submitPin() {
   document.getElementById("lockScreen").classList.add("hidden");
   document.getElementById("app").classList.remove("hidden");
   updateSettingsDisplay();
+  fetchFxRate().catch(e => console.warn(e));
+  refreshAllData();
 }
 
 function lockApp() {
@@ -671,11 +621,10 @@ function lockApp() {
   document.getElementById("pinInput").focus();
 }
 
-// ============================================================
+// =====================================================================
 // Tabs
-// ============================================================
+// =====================================================================
 function showTab(name, bypassLock = false) {
-  // Allow settings access from the lock screen for first-time setup
   if (!unlocked && !bypassLock) return;
   if (!unlocked && bypassLock) {
     document.getElementById("lockScreen").classList.add("hidden");
@@ -685,33 +634,33 @@ function showTab(name, bypassLock = false) {
   document.querySelectorAll(".tab-content").forEach(t => t.classList.add("hidden"));
   document.getElementById("tab-" + name).classList.remove("hidden");
   if (name === "dash" && unlocked) refreshDashboard();
-  if (name === "settings") loadConfig();
+  if (name === "settings") {
+    loadConfig();
+    fillBudgetEditorFromCache();
+  }
+  if (name === "add" && unlocked) renderBudgetsPanel();
 }
 
-// ============================================================
-// Settings
-// ============================================================
+// =====================================================================
+// Settings (config)
+// =====================================================================
 function loadConfig() {
   const cfg = getConfig();
   document.getElementById("cfgBackendUrl").value = cfg.backendUrl || "";
   document.getElementById("cfgPin").value = cfg.pin || "";
 }
 
-function getConfig() {
-  return JSON.parse(localStorage.getItem("ledger_cfg_v2") || "{}");
-}
+function getConfig() { return JSON.parse(localStorage.getItem("ledger_cfg_v2") || "{}"); }
 
 function saveConfig() {
   const backendUrl = document.getElementById("cfgBackendUrl").value.trim();
   const pin = document.getElementById("cfgPin").value.trim();
   if (!backendUrl) { showStatus("cfgStatus", "err", "Apps Script URL is required."); return; }
-  if (!backendUrl.startsWith("https://script.google.com/")) {
-    showStatus("cfgStatus", "err", "URL should start with https://script.google.com/");
-    return;
-  }
+  if (!backendUrl.startsWith("https://script.google.com/")) { showStatus("cfgStatus", "err", "URL should start with https://script.google.com/"); return; }
   if (!/^\d{4}$/.test(pin)) { showStatus("cfgStatus", "err", "PIN must be 4 digits."); return; }
-  localStorage.setItem("ledger_cfg_v2", JSON.stringify({ backendUrl, pin }));
-  showStatus("cfgStatus", "ok", "Saved. You can now close and reopen to unlock with this PIN.");
+  const existing = getConfig();
+  localStorage.setItem("ledger_cfg_v2", JSON.stringify({ ...existing, backendUrl, pin }));
+  showStatus("cfgStatus", "ok", "Saved. Lock and unlock with this PIN.");
   updateSettingsDisplay();
 }
 
@@ -719,6 +668,8 @@ function updateSettingsDisplay() {
   const cfg = getConfig();
   const el = document.getElementById("infoUrl");
   if (el) el.textContent = cfg.backendUrl ? cfg.backendUrl.slice(0, 40) + "…" : "—";
+  const fxEl = document.getElementById("infoFx");
+  if (fxEl) fxEl.textContent = fxRate ? `1 USD = ₹${fxRate.toFixed(4)} (${fxSource})` : "—";
 }
 
 async function testConnection() {
@@ -729,69 +680,312 @@ async function testConnection() {
     const url = cfg.backendUrl + "?action=ping&pin=" + encodeURIComponent(cfg.pin);
     const r = await fetch(url);
     const j = await r.json();
-    if (j.ok) showStatus("cfgStatus", "ok", "Connected. " + (j.message || ""));
-    else if (j.error === "invalid_pin") showStatus("cfgStatus", "err", "Connected, but PIN doesn't match the script's APP_PIN.");
+    if (j.ok) showStatus("cfgStatus", "ok", "Connected. " + (j.message || "") + (j.version ? " (v" + j.version + ")" : ""));
+    else if (j.error === "invalid_pin") showStatus("cfgStatus", "err", "Connected, but PIN doesn't match script's APP_PIN.");
     else showStatus("cfgStatus", "err", "Error: " + (j.error || "unknown"));
   } catch (e) {
-    showStatus("cfgStatus", "err", "Failed: " + e.message + ". Check URL is correct and script is deployed with 'Anyone' access.");
+    showStatus("cfgStatus", "err", "Failed: " + e.message);
   }
 }
 
-// ============================================================
+// =====================================================================
 // Backend calls
-// ============================================================
-async function apiList() {
+// =====================================================================
+async function apiCall(method, payload, queryAction) {
   const cfg = getConfig();
-  const url = cfg.backendUrl + "?action=list&pin=" + encodeURIComponent(cfg.pin);
-  const r = await fetch(url);
-  const j = await r.json();
-  if (!j.ok) throw new Error(j.error || "list failed");
-  return j.rows;
-}
-
-async function apiAdd(data) {
-  const cfg = getConfig();
-  // Using URL-encoded POST avoids CORS preflight (Apps Script doesn't respond to OPTIONS)
-  const body = new URLSearchParams();
-  body.append("action", "add");
-  body.append("pin", cfg.pin);
-  body.append("payload", ""); // unused
-  // Use JSON in postData via text/plain to avoid preflight too
-  const url = cfg.backendUrl;
-  const r = await fetch(url, {
+  if (!cfg.backendUrl) throw new Error("Not configured");
+  if (method === "GET") {
+    const url = cfg.backendUrl + "?" + new URLSearchParams({ ...payload, pin: cfg.pin, action: queryAction }).toString();
+    const r = await fetch(url);
+    const j = await r.json();
+    if (!j.ok) throw new Error(j.error || "GET failed");
+    return j;
+  }
+  const r = await fetch(cfg.backendUrl, {
     method: "POST",
-    // text/plain is a "simple" content-type — no preflight
     headers: { "Content-Type": "text/plain;charset=utf-8" },
-    body: JSON.stringify({ action: "add", pin: cfg.pin, ...data }),
+    body: JSON.stringify({ ...payload, pin: cfg.pin }),
+    redirect: "follow",
   });
   const j = await r.json();
-  if (!j.ok) throw new Error(j.error || "add failed");
-  return j.row;
+  if (!j.ok) throw new Error(j.error || "POST failed");
+  return j;
 }
 
-// ============================================================
+async function apiList()    { return (await apiCall("GET", {}, "list")).rows; }
+async function apiBudgets(month) { return await apiCall("GET", { month: month || currentMonthStr() }, "budgets"); }
+async function apiAdd(d)    { return (await apiCall("POST", { action: "add",    ...d })).row; }
+async function apiUpdate(d) { return (await apiCall("POST", { action: "update", ...d })).row; }
+async function apiDelete(id){ return (await apiCall("POST", { action: "delete", id    })).deleted; }
+async function apiSaveBudget(month, currency, amounts) {
+  return await apiCall("POST", { action: "save_budgets", month, currency, amounts });
+}
+
+async function refreshAllData() {
+  try {
+    const [rows, budgetsResp] = await Promise.all([apiList(), apiBudgets()]);
+    cachedRows = rows.map(parseRow).filter(r => r.Date);
+    currentBudget = budgetsResp.current;
+    renderTotalsBadge();
+    renderBudgetsPanel();
+  } catch (e) {
+    console.warn("refreshAllData:", e);
+  }
+}
+
+function parseRow(r) {
+  return {
+    ID: r.ID, Date: parseDate(r.Date), Category: r.Category,
+    Amount: parseFloat(r.Amount) || 0, Currency: r.Currency,
+    Notes: r.Notes || "", CreatedAt: r.CreatedAt,
+  };
+}
+
+// =====================================================================
+// FX rate
+// =====================================================================
+async function fetchFxRate() {
+  const cached = JSON.parse(localStorage.getItem("ledger_fx") || "null");
+  if (cached && cached.fetchedAt) {
+    const ageHours = (Date.now() - new Date(cached.fetchedAt).getTime()) / 3.6e6;
+    if (ageHours < 24) {
+      fxRate = cached.rate; fxSource = cached.source + " (cached)"; fxFetchedAt = cached.fetchedAt;
+      updateFxInfo(); return;
+    }
+  }
+  try {
+    const r = await fetch("https://api.frankfurter.dev/v1/latest?from=USD&to=INR");
+    const j = await r.json();
+    if (j && j.rates && j.rates.INR) {
+      fxRate = j.rates.INR; fxSource = "Frankfurter"; fxFetchedAt = new Date().toISOString();
+      localStorage.setItem("ledger_fx", JSON.stringify({ rate: fxRate, source: fxSource, fetchedAt: fxFetchedAt }));
+      updateFxInfo(); return;
+    }
+  } catch (e) { console.warn("Frankfurter:", e); }
+  try {
+    const r = await fetch("https://open.er-api.com/v6/latest/USD");
+    const j = await r.json();
+    if (j && j.rates && j.rates.INR) {
+      fxRate = j.rates.INR; fxSource = "ExchangeRate-API"; fxFetchedAt = new Date().toISOString();
+      localStorage.setItem("ledger_fx", JSON.stringify({ rate: fxRate, source: fxSource, fetchedAt: fxFetchedAt }));
+      updateFxInfo(); return;
+    }
+  } catch (e) { console.warn("ExchangeRate-API:", e); }
+  if (cached && cached.rate) {
+    fxRate = cached.rate; fxSource = cached.source + " (stale)"; fxFetchedAt = cached.fetchedAt;
+    updateFxInfo(); return;
+  }
+  fxRate = null; fxSource = "unavailable";
+  updateFxInfo();
+}
+
+function updateFxInfo() {
+  const el = document.getElementById("fxInfo");
+  if (!el) return;
+  if (fxRate) {
+    const dt = fxFetchedAt ? new Date(fxFetchedAt).toLocaleString() : "—";
+    const stale = (fxSource || "").indexOf("stale") >= 0;
+    el.innerHTML = `Rate: 1 USD = ₹${fxRate.toFixed(4)} <span style="opacity:0.7"> · ${fxSource} · ${dt}</span>` +
+                   (stale ? '<span class="stale"> ⚠ stale</span>' : '');
+  } else {
+    el.innerHTML = '<span class="stale">⚠ Could not fetch exchange rate.</span>';
+  }
+  updateSettingsDisplay();
+}
+
+function convertAmount(amount, fromCurr, toCurr) {
+  if (fromCurr === toCurr) return amount;
+  if (!fxRate) return null;
+  if (fromCurr === "USD" && toCurr === "INR") return amount * fxRate;
+  if (fromCurr === "INR" && toCurr === "USD") return amount / fxRate;
+  return null;
+}
+
+// =====================================================================
+// MTD / YTD
+// =====================================================================
+function renderTotalsBadge() {
+  const targetCurr = (currentBudget && currentBudget.currency) || "USD";
+  const sym = targetCurr === "USD" ? "$" : "₹";
+  const now = new Date();
+  const startOfMonth = new Date(now.getFullYear(), now.getMonth(), 1);
+  const startOfYear = new Date(now.getFullYear(), 0, 1);
+  let mtd = 0, ytd = 0, hasUnconverted = false;
+  cachedRows.forEach(r => {
+    const c = convertAmount(r.Amount, r.Currency, targetCurr);
+    if (c === null) { hasUnconverted = true; return; }
+    if (r.Date >= startOfYear) ytd += c;
+    if (r.Date >= startOfMonth) mtd += c;
+  });
+  const mtdEl = document.getElementById("mtdValue");
+  const ytdEl = document.getElementById("ytdValue");
+  if (mtdEl) mtdEl.textContent = `${sym}${fmt(mtd)}` + (hasUnconverted ? " *" : "");
+  if (ytdEl) ytdEl.textContent = `${sym}${fmt(ytd)}` + (hasUnconverted ? " *" : "");
+}
+
+// =====================================================================
+// Budget editor (Settings tab) — current month only
+// =====================================================================
+function buildBudgetEditor() {
+  const wrap = document.getElementById("budgetEditor");
+  wrap.innerHTML = "";
+  CATEGORIES.forEach(c => {
+    const row = document.createElement("div");
+    row.className = "budget-editor-row";
+    row.innerHTML = `<span>${c}</span><input type="number" step="0.01" data-cat="${c}" placeholder="0.00 (leave blank for no budget)" />`;
+    wrap.appendChild(row);
+  });
+}
+
+function fillBudgetEditorFromCache() {
+  const banner = document.getElementById("budgetMonthBanner");
+  const subtitle = document.getElementById("budgetEditorSubtitle");
+  const monthLabel = monthDisplay(currentMonthStr());
+
+  if (!currentBudget) {
+    banner.innerHTML = '';
+    subtitle.textContent = "Loading current month's budget…";
+    return;
+  }
+
+  // Banner explaining current state
+  if (currentBudget.empty) {
+    banner.className = "month-banner";
+    banner.innerHTML = `<span class="icon">●</span><span>Setting up budgets for <strong>${monthLabel}</strong> for the first time. After saving, future months will auto-roll forward unless you change them.</span>`;
+  } else if (currentBudget.carriedFrom) {
+    banner.className = "month-banner info-quiet";
+    banner.innerHTML = `<span class="icon">↻</span><span>Showing budgets for <strong>${monthLabel}</strong>, carried forward from <strong>${monthDisplay(currentBudget.carriedFrom)}</strong>. Edit and save to set them for this month.</span>`;
+  } else {
+    const lu = currentBudget.lastUpdated || "—";
+    banner.className = "month-banner info-quiet";
+    banner.innerHTML = `<span class="icon">●</span><span>Editing budgets for <strong>${monthLabel}</strong>. Last updated ${lu}.</span>`;
+  }
+  subtitle.textContent = "Changes apply to this month only. Past months are not affected.";
+
+  // Fill values
+  document.querySelectorAll("#budgetEditor input").forEach(inp => {
+    const v = currentBudget.amounts[inp.dataset.cat];
+    inp.value = (v && parseFloat(v) > 0) ? parseFloat(v) : "";
+  });
+  document.getElementById("budgetCurrency").value = currentBudget.currency || "USD";
+}
+
+function monthDisplay(monthStr) {
+  // "2026-04" → "April 2026"
+  if (!monthStr || !/^\d{4}-\d{2}$/.test(monthStr)) return monthStr || "—";
+  const [y, m] = monthStr.split("-").map(Number);
+  const d = new Date(y, m - 1, 1);
+  return d.toLocaleString(undefined, { month: "long", year: "numeric" });
+}
+
+async function saveBudgetsForCurrentMonth() {
+  const btn = document.getElementById("saveBudgetsBtn");
+  btn.disabled = true;
+  showStatus("budgetStatus", "info", "Saving… <span class='spinner'></span>");
+  try {
+    const month = currentMonthStr();
+    const currency = document.getElementById("budgetCurrency").value;
+    const amounts = {};
+    document.querySelectorAll("#budgetEditor input").forEach(inp => {
+      const amt = parseFloat(inp.value);
+      amounts[inp.dataset.cat] = (amt > 0) ? amt : 0;
+    });
+    const resp = await apiSaveBudget(month, currency, amounts);
+    currentBudget = resp.current;
+    showStatus("budgetStatus", "ok", `Saved budgets for ${monthDisplay(month)}.`);
+    fillBudgetEditorFromCache();
+    renderBudgetsPanel();
+    renderTotalsBadge();
+  } catch (e) {
+    showStatus("budgetStatus", "err", "Failed: " + e.message);
+  } finally {
+    btn.disabled = false;
+  }
+}
+
+// =====================================================================
+// Budgets panel on Add screen
+// =====================================================================
+function renderBudgetsPanel() {
+  const list = document.getElementById("budgetsList");
+  const subtitle = document.getElementById("budgetsSubtitle");
+  if (!currentBudget) {
+    subtitle.textContent = "Loading…";
+    list.innerHTML = '';
+    return;
+  }
+  if (currentBudget.empty) {
+    subtitle.textContent = "No budgets set yet for this month. Add them in Settings → Monthly budgets.";
+    list.innerHTML = '';
+    return;
+  }
+
+  const targetCurr = currentBudget.currency || "USD";
+  const sym = targetCurr === "USD" ? "$" : "₹";
+  const now = new Date();
+  const startOfMonth = new Date(now.getFullYear(), now.getMonth(), 1);
+  const monthLabel = monthDisplay(currentBudget.month);
+
+  // Compute spend per category for current month, converted
+  const spendByCat = {};
+  let unconvertedFlag = false;
+  cachedRows.forEach(r => {
+    if (r.Date < startOfMonth) return;
+    const c = convertAmount(r.Amount, r.Currency, targetCurr);
+    if (c === null) { unconvertedFlag = true; return; }
+    spendByCat[r.Category] = (spendByCat[r.Category] || 0) + c;
+  });
+
+  let subParts = [monthLabel];
+  if (currentBudget.carriedFrom) subParts.push(`carried forward from ${monthDisplay(currentBudget.carriedFrom)}`);
+  if (unconvertedFlag) subParts.push("some entries couldn't be converted (FX unavailable)");
+  subtitle.textContent = subParts.join(" · ");
+
+  // Render only categories with a budget > 0
+  const rows = CATEGORIES
+    .filter(cat => parseFloat(currentBudget.amounts[cat]) > 0)
+    .map(cat => {
+      const budget = parseFloat(currentBudget.amounts[cat]) || 0;
+      const spent = spendByCat[cat] || 0;
+      const pct = budget > 0 ? Math.min(100, (spent / budget) * 100) : 0;
+      const overPct = budget > 0 ? (spent / budget) * 100 : 0;
+      let barClass = "";
+      if (overPct >= 100) barClass = "bad";
+      else if (overPct >= 75) barClass = "warn";
+      const remaining = budget - spent;
+      return `
+        <div class="budget-row">
+          <div class="budget-row-head">
+            <span class="cat">${cat}</span>
+            <span class="amt"><strong>${sym}${fmt(spent)}</strong> / ${sym}${fmt(budget)}</span>
+          </div>
+          <div class="budget-bar ${barClass}"><div class="fill" style="width: ${pct}%"></div></div>
+          <div class="budget-pct">${overPct.toFixed(0)}% used · ${remaining >= 0 ? sym + fmt(remaining) + " left" : sym + fmt(-remaining) + " over"}</div>
+        </div>`;
+    });
+  list.innerHTML = rows.length > 0 ? rows.join("") : '<p style="color: var(--ink-soft); font-size: 13px;">No category budgets above 0 for this month.</p>';
+}
+
+// =====================================================================
 // Add expense
-// ============================================================
+// =====================================================================
 async function saveExpense() {
   const cfg = getConfig();
-  if (!cfg.backendUrl) { showStatus("saveStatus", "err", "Set up your backend URL in Settings first."); return; }
-
+  if (!cfg.backendUrl) { showStatus("saveStatus", "err", "Set up Settings first."); return; }
   const date = document.getElementById("expDate").value;
   const category = document.getElementById("expCategory").value;
   const amount = parseFloat(document.getElementById("expAmount").value);
   const notes = document.getElementById("expNotes").value;
-
-  if (!date) { showStatus("saveStatus", "err", "Date is required."); return; }
+  if (!date) { showStatus("saveStatus", "err", "Date required."); return; }
   if (!amount || amount <= 0) { showStatus("saveStatus", "err", "Enter a valid amount."); return; }
-
   const btn = document.getElementById("saveBtn");
   btn.disabled = true;
   showStatus("saveStatus", "info", "Saving… <span class='spinner'></span>");
-
   try {
     const saved = await apiAdd({ date, category, amount, currency: selectedCurrency, notes });
     showStatus("saveStatus", "ok", `Saved ${saved.ID} — ${selectedCurrency} ${amount.toFixed(2)} for ${category}.`);
-    resetForm(true);
+    resetForm();
+    await refreshAllData();
   } catch (e) {
     showStatus("saveStatus", "err", "Failed: " + e.message);
   } finally {
@@ -808,9 +1002,9 @@ function resetForm() {
   selectedCurrency = "USD";
 }
 
-// ============================================================
+// =====================================================================
 // Dashboard
-// ============================================================
+// =====================================================================
 function buildCategoryCheckboxes() {
   const group = document.getElementById("catGroup");
   group.innerHTML = "";
@@ -837,31 +1031,20 @@ function getSelectedCategories() {
 }
 
 async function refreshDashboard() {
-  const cfg = getConfig();
-  if (!cfg.backendUrl) {
+  if (!getConfig().backendUrl) {
     document.getElementById("statGrid").innerHTML = '<div class="empty">Configure your backend in Settings first.</div>';
     return;
   }
   const btn = document.getElementById("refreshBtn");
-  btn.disabled = true;
-  btn.innerHTML = '<span class="spinner"></span>';
+  btn.disabled = true; btn.innerHTML = '<span class="spinner"></span>';
   try {
-    const rawRows = await apiList();
-    cachedRows = rawRows.map(r => ({
-      ID: r.ID,
-      Date: parseDate(r.Date),
-      Category: r.Category,
-      Amount: parseFloat(r.Amount) || 0,
-      Currency: r.Currency,
-      Notes: r.Notes || "",
-      CreatedAt: r.CreatedAt,
-    })).filter(r => r.Date);
+    if (!fxRate) await fetchFxRate();
+    await refreshAllData();
     renderDashboard();
   } catch (e) {
     document.getElementById("statGrid").innerHTML = `<div class="empty" style="color: var(--accent);">Error: ${e.message}</div>`;
   } finally {
-    btn.disabled = false;
-    btn.textContent = "Apply";
+    btn.disabled = false; btn.textContent = "Apply";
   }
 }
 
@@ -887,40 +1070,17 @@ function filterRows() {
 function renderDashboard() {
   const rows = filterRows();
   const display = document.getElementById("dashDisplayCurr").value;
-  const ratePrompt = document.getElementById("ratePrompt");
-
   let convertedRows = rows;
-  let needsRate = false;
   if (display !== "separate") {
-    const hasUSD = rows.some(r => r.Currency === "USD");
-    const hasINR = rows.some(r => r.Currency === "INR");
-    if (hasUSD && hasINR) needsRate = true;
-  }
-
-  if (needsRate) {
-    ratePrompt.classList.add("show");
-    document.getElementById("rateLabel").textContent = display === "USD" ? "1 USD = ? INR" : "? INR per 1 USD";
-    const rate = parseFloat(document.getElementById("rateInput").value);
-    if (!rate || rate <= 0) {
-      document.getElementById("statGrid").innerHTML = '<div class="empty">Enter a USD↔INR rate above to proceed.</div>';
-      document.getElementById("byCatChart").parentElement.style.visibility = "hidden";
-      document.getElementById("byTimeChart").parentElement.style.visibility = "hidden";
-      return;
-    }
     convertedRows = rows.map(r => {
-      let amt = r.Amount;
-      if (display === "USD" && r.Currency === "INR") amt = r.Amount / rate;
-      if (display === "INR" && r.Currency === "USD") amt = r.Amount * rate;
-      return { ...r, Amount: amt, Currency: display };
-    });
-  } else {
-    ratePrompt.classList.remove("show");
-    if (display !== "separate") convertedRows = rows.map(r => ({ ...r, Currency: display }));
+      if (r.Currency === display) return r;
+      const c = convertAmount(r.Amount, r.Currency, display);
+      if (c === null) return null;
+      return { ...r, Amount: c, Currency: display };
+    }).filter(Boolean);
   }
-
   document.getElementById("byCatChart").parentElement.style.visibility = "visible";
   document.getElementById("byTimeChart").parentElement.style.visibility = "visible";
-
   renderStats(convertedRows, display);
   renderCharts(convertedRows, display);
   renderDataTable(convertedRows);
@@ -955,16 +1115,13 @@ function renderStats(rows, display) {
   grid.innerHTML = html;
 }
 
-function fmt(n) {
-  return n.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 });
-}
+function fmt(n) { return n.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 }); }
 
 function renderCharts(rows, display) {
   const byCat = {};
   rows.forEach(r => byCat[r.Category] = (byCat[r.Category] || 0) + r.Amount);
   const catLabels = Object.keys(byCat);
   const catData = Object.values(byCat);
-
   const byDay = {};
   rows.forEach(r => {
     const k = r.Date.toISOString().split("T")[0];
@@ -972,16 +1129,12 @@ function renderCharts(rows, display) {
   });
   const dayLabels = Object.keys(byDay).sort();
   const dayData = dayLabels.map(k => byDay[k]);
-
-  const palette = ["#c8551a", "#1a1814", "#4a6b3a", "#8a7548", "#5a7a8c", "#a85050", "#7a5a8c", "#9b8454", "#3a5a4a"];
-
   if (charts.byCat) charts.byCat.destroy();
   charts.byCat = new Chart(document.getElementById("byCatChart"), {
     type: "doughnut",
-    data: { labels: catLabels, datasets: [{ data: catData, backgroundColor: palette, borderWidth: 0 }] },
+    data: { labels: catLabels, datasets: [{ data: catData, backgroundColor: PALETTE, borderWidth: 0 }] },
     options: {
-      responsive: true,
-      maintainAspectRatio: false,
+      responsive: true, maintainAspectRatio: false,
       plugins: {
         title: { display: true, text: "By Category", font: { family: "Fraunces", size: 16, weight: "500" }, color: "#1a1814", padding: { bottom: 16 } },
         legend: { position: "bottom", labels: { font: { family: "Inter Tight", size: 12 } } },
@@ -990,26 +1143,12 @@ function renderCharts(rows, display) {
       cutout: "60%",
     },
   });
-
   if (charts.byTime) charts.byTime.destroy();
   charts.byTime = new Chart(document.getElementById("byTimeChart"), {
     type: "line",
-    data: {
-      labels: dayLabels,
-      datasets: [{
-        label: "Daily spend",
-        data: dayData,
-        borderColor: "#c8551a",
-        backgroundColor: "rgba(200, 85, 26, 0.08)",
-        tension: 0.3,
-        fill: true,
-        pointBackgroundColor: "#c8551a",
-        pointRadius: 3,
-      }],
-    },
+    data: { labels: dayLabels, datasets: [{ label: "Daily spend", data: dayData, borderColor: "#c8551a", backgroundColor: "rgba(200, 85, 26, 0.08)", tension: 0.3, fill: true, pointBackgroundColor: "#c8551a", pointRadius: 3 }] },
     options: {
-      responsive: true,
-      maintainAspectRatio: false,
+      responsive: true, maintainAspectRatio: false,
       plugins: {
         title: { display: true, text: "Over Time", font: { family: "Fraunces", size: 16, weight: "500" }, color: "#1a1814", padding: { bottom: 16 } },
         legend: { display: false },
@@ -1039,30 +1178,172 @@ function renderDataTable(rows) {
     return;
   }
   tbody.innerHTML = sorted.map(r => `
-    <tr>
+    <tr data-id="${r.ID}">
       <td class="mono">${r.Date.toISOString().split("T")[0]}</td>
       <td class="cat">${r.Category}</td>
-      <td>${r.Notes || "—"}</td>
+      <td>${escapeHtml(r.Notes || "—")}</td>
       <td class="mono">${r.Currency}</td>
       <td class="num">${(r.Currency === "INR" ? "₹" : "$") + fmt(r.Amount)}</td>
     </tr>
   `).join("");
+  attachRowListeners();
+}
+
+function escapeHtml(s) {
+  return String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
 }
 
 function toggleDataTable() {
   const wrap = document.getElementById("dataTableWrap");
   const btn = document.getElementById("seeDataBtn");
-  if (wrap.classList.contains("hidden")) {
-    wrap.classList.remove("hidden");
-    btn.textContent = "Hide data ↑";
-  } else {
-    wrap.classList.add("hidden");
-    btn.textContent = "See data ↓";
+  if (wrap.classList.contains("hidden")) { wrap.classList.remove("hidden"); btn.textContent = "Hide data ↑"; }
+  else { wrap.classList.add("hidden"); btn.textContent = "See data ↓"; }
+}
+
+// =====================================================================
+// Context menu (right-click / long-press)
+// =====================================================================
+let longPressTimer = null;
+function attachRowListeners() {
+  document.querySelectorAll("#dataTable tbody tr").forEach(tr => {
+    tr.addEventListener("contextmenu", e => {
+      e.preventDefault();
+      showCtxMenu(e.pageX, e.pageY, tr.dataset.id);
+    });
+    tr.addEventListener("touchstart", e => {
+      longPressTimer = setTimeout(() => {
+        const t = e.touches[0];
+        showCtxMenu(t.pageX, t.pageY, tr.dataset.id);
+      }, 500);
+    });
+    tr.addEventListener("touchend", () => clearTimeout(longPressTimer));
+    tr.addEventListener("touchmove", () => clearTimeout(longPressTimer));
+  });
+}
+
+function showCtxMenu(x, y, rowId) {
+  pendingRowId = rowId;
+  const menu = document.getElementById("ctxMenu");
+  menu.classList.add("show");
+  const w = menu.offsetWidth, h = menu.offsetHeight;
+  const vw = window.innerWidth + window.scrollX;
+  const vh = window.innerHeight + window.scrollY;
+  menu.style.left = Math.min(x, vw - w - 8) + "px";
+  menu.style.top  = Math.min(y, vh - h - 8) + "px";
+}
+
+function hideCtxMenu() { document.getElementById("ctxMenu").classList.remove("show"); }
+
+function ctxEdit() {
+  hideCtxMenu();
+  const row = cachedRows.find(r => r.ID === pendingRowId);
+  if (row) openEditModal(row);
+}
+
+function ctxDelete() {
+  hideCtxMenu();
+  const row = cachedRows.find(r => r.ID === pendingRowId);
+  if (row) openDeleteModal(row);
+}
+
+// =====================================================================
+// Edit / Delete modal
+// =====================================================================
+function openEditModal(row) {
+  const modal = document.getElementById("modal");
+  document.getElementById("modalTitle").textContent = "Edit expense";
+  document.getElementById("modalSub").textContent = row.ID;
+  const dateStr = row.Date.toISOString().split("T")[0];
+  document.getElementById("modalBody").innerHTML = `
+    <div class="form-grid">
+      <label class="field"><span>Date</span><input type="date" id="editDate" value="${dateStr}" /></label>
+      <label class="field"><span>Category</span>
+        <select id="editCategory">
+          ${CATEGORIES.map(c => `<option ${c === row.Category ? "selected" : ""}>${c}</option>`).join("")}
+        </select>
+      </label>
+      <label class="field"><span>Amount</span><input type="number" step="0.01" id="editAmount" value="${row.Amount}" /></label>
+      <label class="field"><span>Currency</span>
+        <select id="editCurrency">
+          <option value="USD" ${row.Currency === "USD" ? "selected" : ""}>USD</option>
+          <option value="INR" ${row.Currency === "INR" ? "selected" : ""}>INR</option>
+        </select>
+      </label>
+      <label class="field full"><span>Notes</span><textarea id="editNotes">${escapeHtml(row.Notes || "")}</textarea></label>
+    </div>
+    <div class="status" id="editStatus"></div>`;
+  const actionBtn = document.getElementById("modalAction");
+  actionBtn.textContent = "Save changes";
+  actionBtn.className = "btn btn-accent";
+  actionBtn.onclick = () => submitEdit(row.ID);
+  modal.classList.add("show");
+}
+
+async function submitEdit(id) {
+  const date = document.getElementById("editDate").value;
+  const category = document.getElementById("editCategory").value;
+  const amount = parseFloat(document.getElementById("editAmount").value);
+  const currency = document.getElementById("editCurrency").value;
+  const notes = document.getElementById("editNotes").value;
+  if (!date || !(amount > 0)) { showStatus("editStatus", "err", "Date and a positive amount required."); return; }
+  const btn = document.getElementById("modalAction");
+  btn.disabled = true;
+  showStatus("editStatus", "info", "Saving… <span class='spinner'></span>");
+  try {
+    await apiUpdate({ id, date, category, amount, currency, notes });
+    closeModal();
+    await refreshAllData();
+    if (!document.getElementById("tab-dash").classList.contains("hidden")) renderDashboard();
+  } catch (e) {
+    showStatus("editStatus", "err", "Failed: " + e.message);
+  } finally {
+    btn.disabled = false;
   }
 }
 
+function openDeleteModal(row) {
+  const modal = document.getElementById("modal");
+  document.getElementById("modalTitle").textContent = "Delete this expense?";
+  document.getElementById("modalSub").textContent = row.ID;
+  const sym = row.Currency === "INR" ? "₹" : "$";
+  document.getElementById("modalBody").innerHTML = `
+    <p style="margin-bottom: 16px;">Are you sure you want to delete this entry? This will physically remove the row from the Sheet.</p>
+    <div class="settings-row"><span class="label">Date</span><span class="value">${row.Date.toISOString().split("T")[0]}</span></div>
+    <div class="settings-row"><span class="label">Category</span><span class="value">${row.Category}</span></div>
+    <div class="settings-row"><span class="label">Amount</span><span class="value">${sym}${fmt(row.Amount)} ${row.Currency}</span></div>
+    <div class="settings-row"><span class="label">Notes</span><span class="value">${escapeHtml(row.Notes || "—")}</span></div>
+    <div class="status" id="deleteStatus"></div>`;
+  const actionBtn = document.getElementById("modalAction");
+  actionBtn.textContent = "Delete";
+  actionBtn.className = "btn btn-danger";
+  actionBtn.onclick = () => submitDelete(row.ID);
+  modal.classList.add("show");
+}
+
+async function submitDelete(id) {
+  const btn = document.getElementById("modalAction");
+  btn.disabled = true;
+  showStatus("deleteStatus", "info", "Deleting… <span class='spinner'></span>");
+  try {
+    await apiDelete(id);
+    closeModal();
+    await refreshAllData();
+    if (!document.getElementById("tab-dash").classList.contains("hidden")) renderDashboard();
+  } catch (e) {
+    showStatus("deleteStatus", "err", "Failed: " + e.message);
+  } finally {
+    btn.disabled = false;
+  }
+}
+
+function closeModal() { document.getElementById("modal").classList.remove("show"); }
+
+// =====================================================================
+// Status helper
+// =====================================================================
 function showStatus(id, kind, html) {
   const el = document.getElementById(id);
+  if (!el) return;
   el.className = "status show " + kind;
   el.innerHTML = html;
   if (kind === "ok") setTimeout(() => el.classList.remove("show"), 4000);
