@@ -973,7 +973,7 @@ function renderCharts(rows, display) {
   const dayLabels = Object.keys(byDay).sort();
   const dayData = dayLabels.map(k => byDay[k]);
 
-  const palette = ["#c8551a", "#1a1814", "#4a6b3a", "#8a7548", "#5a7a8c", "#a85050", "#7a5a8c", "#9b8454"];
+  const palette = ["#c8551a", "#1a1814", "#4a6b3a", "#8a7548", "#5a7a8c", "#a85050", "#7a5a8c", "#9b8454", "#3a5a4a"];
 
   if (charts.byCat) charts.byCat.destroy();
   charts.byCat = new Chart(document.getElementById("byCatChart"), {
